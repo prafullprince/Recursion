@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <limits.h>
 
 //           <     ,
 
@@ -46,3 +47,29 @@ using namespace std;
 
 //   linearSearch(arr,size,idx,target);
 // }
+
+
+
+
+//                    Q3 => maximum num in an array
+
+int maximumNum(int arr[],int size,int idx,int &maxNum){
+  if(idx>=size){
+    return 0;
+  }
+  if(arr[idx]>maxNum){
+    maxNum = arr[idx];
+  }
+  maximumNum(arr,size,idx+1,maxNum);
+  return maxNum;
+}
+
+int main(){
+  int arr[]={10,30,70,15,35,95};
+  int size = 6;
+  int idx =0;
+  int maxNum = INT_MIN;
+
+  int ans = maximumNum(arr,size,idx,maxNum);
+  cout << ans << endl;
+}

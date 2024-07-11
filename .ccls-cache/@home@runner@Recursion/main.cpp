@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 #include <limits.h>
 
@@ -53,23 +54,51 @@ using namespace std;
 
 //                    Q3 => maximum num in an array
 
-int maximumNum(int arr[],int size,int idx,int &maxNum){
+// int maximumNum(int arr[],int size,int idx,int &maxNum){
+//   if(idx>=size){
+//     return 0;
+//   }
+//   if(arr[idx]>maxNum){
+//     maxNum = arr[idx];
+//   }
+//   maximumNum(arr,size,idx+1,maxNum);
+//   return maxNum;
+// }
+
+// int main(){
+//   int arr[]={10,30,70,15,35,95};
+//   int size = 6;
+//   int idx =0;
+//   int maxNum = INT_MIN;
+
+//   int ans = maximumNum(arr,size,idx,maxNum);
+//   cout << ans << endl;
+// }
+
+
+
+
+
+//                     Q4 =>  store in vector which is even num
+void printArray(int arr[],int size,int idx, vector<int> &ans){
   if(idx>=size){
-    return 0;
+    return;
   }
-  if(arr[idx]>maxNum){
-    maxNum = arr[idx];
+  if(arr[idx]%2==0){
+    ans.push_back(arr[idx]);
   }
-  maximumNum(arr,size,idx+1,maxNum);
-  return maxNum;
+  printArray(arr,6,idx+1,ans);
 }
 
-int main(){
-  int arr[]={10,30,70,15,35,95};
-  int size = 6;
-  int idx =0;
-  int maxNum = INT_MIN;
+int main() {
+  int arr[] = {10,21,33,40,54,50};
+  int size=6;
+  int idx=0;
+  vector<int> ans;
+  printArray(arr,size,idx,ans);
 
-  int ans = maximumNum(arr,size,idx,maxNum);
-  cout << ans << endl;
+  int s = ans.size();
+  for(int i=0;i<s;i++){
+    cout<<ans[i]<<endl;
+  }
 }

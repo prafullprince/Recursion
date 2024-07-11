@@ -1,7 +1,3 @@
-#include <iostream>
-using namespace std;
-
-
 //   Q2 => linearSearch
 void linearSearch(int arr[],int size,int idx,int target){
   if(idx>=size){
@@ -19,7 +15,7 @@ int main(){
   int arr[] = {10,20,30,40,50,60};
   int size = 6;
   int idx = 0;
-  int target = 40;
+  int target = 70;
 
   linearSearch(arr,size,idx,target);
 }

@@ -79,26 +79,59 @@ using namespace std;
 
 
 
-//                     Q4 =>  store in vector which is even num
-void printArray(int arr[],int size,int idx, vector<int> &ans){
-  if(idx>=size){
-    return;
+//                 Q4 =>  store in vector which is even num
+
+// void printArray(int arr[],int size,int idx, vector<int> &ans){
+//   if(idx>=size){
+//     return;
+//   }
+//   if(arr[idx]%2==0){
+//     ans.push_back(arr[idx]);
+//   }
+//   printArray(arr,6,idx+1,ans);
+// }
+
+// int main() {
+//   int arr[] = {10,21,33,40,54,50};
+//   int size=6;
+//   int idx=0;
+//   vector<int> ans;
+//   printArray(arr,size,idx,ans);
+
+//   int s = ans.size();
+//   for(int i=0;i<s;i++){
+//     cout<<ans[i]<<endl;
+//   }
+// }
+
+
+
+
+
+//       Q5 => binary search by recursion
+int binarySearch(vector<int> arr,int target,int start,int end){
+  if(start>end){
+    return -1 ;
   }
-  if(arr[idx]%2==0){
-    ans.push_back(arr[idx]);
+  int mid = start + (end-start)/2;
+
+  if(target==arr[mid]){
+    return mid;
   }
-  printArray(arr,6,idx+1,ans);
+  else if(target>arr[mid]){
+    return binarySearch(arr,target,mid+1,end);
+  }
+  else{
+    return binarySearch(arr,target,start,mid-1);
+  }
 }
 
-int main() {
-  int arr[] = {10,21,33,40,54,50};
-  int size=6;
-  int idx=0;
-  vector<int> ans;
-  printArray(arr,size,idx,ans);
+int main(){
+  vector<int> arr={10,20,30,40,50,60,70,80,90};
+  int target = 60;
+  int start = 0;
+  int end = arr.size()-1;
 
-  int s = ans.size();
-  for(int i=0;i<s;i++){
-    cout<<ans[i]<<endl;
-  }
+  int ans = binarySearch(arr,target,start,end);
+  cout << ans << endl;
 }

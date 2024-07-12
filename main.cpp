@@ -160,33 +160,62 @@ using namespace std;
 
 
 //       07 => check array is sorted or not
-bool isSorted(vector<int> arr,int idx){
-  int size = arr.size();
+
+// bool isSorted(vector<int> arr,int idx){
+//   int size = arr.size();
   
-  if(idx>=size){
-    return true;
-  }
+//   if(idx>=size){
+//     return true;
+//   }
 
-  if(size==1){
-    return true;
-  }
-  if(arr[idx]>arr[idx+1]){
-    return false;
-  }
+//   if(size==1){
+//     return true;
+//   }
+//   if(arr[idx]>arr[idx+1]){
+//     return false;
+//   }
 
-  bool ans = isSorted(arr,idx+1);
-  return ans;
+//   bool ans = isSorted(arr,idx+1);
+//   return ans;
+// }
+
+// int main(){
+//   vector<int> arr = {10};
+//   int idx = 0;
+
+//   bool finalAns = isSorted(arr,idx);
+
+//   if(finalAns==1){
+//     cout << "Array is sorted" << endl;
+//   }else{
+//     cout << "Array is not sorted" << endl;
+//   }
+// }
+
+
+
+
+
+//       08 => print all subsequences
+
+void printSubsequences(string str, string output,int idx){
+  if(idx>=str.length()){
+    cout<<"subseqences of string are: "<< output << endl;
+    return;
+  }
+  char ch = str[idx];
+  // 1 case
+      // include
+  printSubsequences(str,output+ch,idx+1);
+      // exclude
+  printSubsequences(str,output,idx+1);
+  
 }
 
 int main(){
-  vector<int> arr = {10};
+  string str = "abc";
+  string output = "";
   int idx = 0;
 
-  bool finalAns = isSorted(arr,idx);
-
-  if(finalAns==1){
-    cout << "Array is sorted" << endl;
-  }else{
-    cout << "Array is not sorted" << endl;
-  }
+  printSubsequences(str,output,idx);
 }

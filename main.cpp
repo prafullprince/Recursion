@@ -5,9 +5,6 @@ using namespace std;
 
 //           <     ,
 
-
-
-
 //                 Q1 => Print Array
 // void printArray(int arr[],int size,int idx){
 //   if(idx>=size){
@@ -23,9 +20,6 @@ using namespace std;
 //   int idx=0;
 //   printArray(arr,size,idx);
 // }
-
-
-
 
 //             Q2 => linearSearch
 // void linearSearch(int arr[],int size,int idx,int target){
@@ -49,9 +43,6 @@ using namespace std;
 //   linearSearch(arr,size,idx,target);
 // }
 
-
-
-
 //                    Q3 => maximum num in an array
 
 // int maximumNum(int arr[],int size,int idx,int &maxNum){
@@ -74,10 +65,6 @@ using namespace std;
 //   int ans = maximumNum(arr,size,idx,maxNum);
 //   cout << ans << endl;
 // }
-
-
-
-
 
 //                 Q4 =>  store in vector which is even num
 
@@ -103,10 +90,6 @@ using namespace std;
 //     cout<<ans[i]<<endl;
 //   }
 // }
-
-
-
-
 
 //       Q5 => binary search by recursion
 // int binarySearch(vector<int> arr,int target,int start,int end){
@@ -136,15 +119,13 @@ using namespace std;
 //   cout << ans << endl;
 // }
 
-
-
 //    Q6 => digit from digits
 
 // void printDigits(int n){
 //   if(n==0){
 //     return;
 //   }
-//   int digit = n%10; 
+//   int digit = n%10;
 //   cout << digit << endl;
 //   printDigits(n/10);
 // }
@@ -155,15 +136,11 @@ using namespace std;
 //   printDigits(n);
 // }
 
-
-
-
-
 //       07 => check array is sorted or not
 
 // bool isSorted(vector<int> arr,int idx){
 //   int size = arr.size();
-  
+
 //   if(idx>=size){
 //     return true;
 //   }
@@ -192,30 +169,134 @@ using namespace std;
 //   }
 // }
 
-
-
-
-
 //       08 => print all subsequences
 
-void printSubsequences(string str, string output,int idx){
-  if(idx>=str.length()){
-    cout<<"subseqences of string are: "<< output << endl;
-    return;
+// void printSubsequences(string str, string output,int idx){
+//   if(idx>=str.length()){
+//     cout<<"subseqences of string are: "<< output << endl;
+//     return;
+//   }
+//   char ch = str[idx];
+//   // 1 case
+//       // include
+//   printSubsequences(str,output+ch,idx+1);
+//       // exclude
+//   printSubsequences(str,output,idx+1);
+
+// }
+
+// int main(){
+//   string str = "abc";
+//   string output = "";
+//   int idx = 0;
+
+//   printSubsequences(str,output,idx);
+// }
+
+//             09 => house robbery
+
+// int rob(vector<int> arr,int size,int idx){
+//   if(idx>=size){
+//     return 0;
+//   }
+//   // 1 case
+//       // 1st include
+//   int includeAns = arr[idx] + rob(arr, size, idx+2);
+//       // 1st exclude
+//   int excludeAns = 0 + rob(arr,size,idx+1);
+//   int maxAns = max(includeAns, excludeAns);
+
+//   return maxAns;
+// }
+
+// int main(){
+//   vector<int> arr = {1,2,3,7};
+//   int size = arr.size();
+//   int idx = 0;
+
+//   int finalAns = rob(arr,size,idx);
+//   cout << finalAns << endl;
+// }
+
+//         Q11 => coins change. 1) no. of ways
+
+// int coinChange(int coin,int amount){
+//   if(amount == 0){
+//     return 0;
+//   }
+//   int recAns = coinChange(coin, amount-coin);
+//   int ans = 1 + recAns;
+//   return ans;
+// }
+
+// int main(){
+//   int coin = 5;
+//   int amount = 10;
+
+//   int finalAns = coinChange(coin,amount);
+
+//   cout << finalAns << endl;
+// }
+
+//         Q11 => coins change. 2) minimum no. of coins
+
+// int coinChangeMinCoins(int coins[],int amount,int idx){
+//   if(amount==0){
+//     return 0;
+//   }
+//   if(idx>=4){
+//     return INT_MAX;
+//   }
+//   int coin = coins[idx];
+//   // take coin
+//   int takeCoin = 1 + coinChangeMinCoins(coins, amount-coin, idx);
+//   // not take coin
+//   int notTakeCoin = 0 + coinChangeMinCoins(coins, amount, idx+1);
+
+//   return min(takeCoin, notTakeCoin);
+// }
+
+// int main(){
+//   int coins[] = {1,2,5,10};
+//   int amount = 11;
+//   int idx = 0;
+
+//   int finalAns = coinChangeMinCoins(coins, amount, idx);
+
+//   if(finalAns==INT_MAX){
+//     cout << "Not possible" << endl;
+//   }else{
+//     cout << "minimum coins required: " << finalAns << endl;
+//   }
+// }
+
+int coinChange(int coins[], int amount) {
+  if (amount == 0) {
+    return 0;
   }
-  char ch = str[idx];
-  // 1 case
-      // include
-  printSubsequences(str,output+ch,idx+1);
-      // exclude
-  printSubsequences(str,output,idx+1);
-  
+  int mini = INT_MAX;
+
+  for (int i = 0; i < 3; i++) {
+    int coin = coins[i];
+    if (coin <= amount) {
+      int recAns = coinChange(coins, amount - coin);
+      if (recAns != INT_MAX) {
+        int coinUsed = 1 + recAns;
+        mini = min(coinUsed, mini);
+      }
+    }
+  }
+  return mini;
 }
 
-int main(){
-  string str = "abc";
-  string output = "";
-  int idx = 0;
+int main() {
+  int coins[] = {2, 4, 1};
+  int amount = 11;
 
-  printSubsequences(str,output,idx);
+  int finalAns = coinChange(coins, amount);
+  if (finalAns == INT_MAX) {
+    cout << "not possible ways" << endl;
+  } else {
+    cout << finalAns << endl;
+  }
 }

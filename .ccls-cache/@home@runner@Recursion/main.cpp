@@ -109,29 +109,84 @@ using namespace std;
 
 
 //       Q5 => binary search by recursion
-int binarySearch(vector<int> arr,int target,int start,int end){
-  if(start>end){
-    return -1 ;
-  }
-  int mid = start + (end-start)/2;
+// int binarySearch(vector<int> arr,int target,int start,int end){
+//   if(start>end){
+//     return -1 ;
+//   }
+//   int mid = start + (end-start)/2;
 
-  if(target==arr[mid]){
-    return mid;
+//   if(target==arr[mid]){
+//     return mid;
+//   }
+//   else if(target>arr[mid]){
+//     return binarySearch(arr,target,mid+1,end);
+//   }
+//   else{
+//     return binarySearch(arr,target,start,mid-1);
+//   }
+// }
+
+// int main(){
+//   vector<int> arr={10,20,30,40,50,60,70,80,90};
+//   int target = 60;
+//   int start = 0;
+//   int end = arr.size()-1;
+
+//   int ans = binarySearch(arr,target,start,end);
+//   cout << ans << endl;
+// }
+
+
+
+//    Q6 => digit from digits
+
+// void printDigits(int n){
+//   if(n==0){
+//     return;
+//   }
+//   int digit = n%10; 
+//   cout << digit << endl;
+//   printDigits(n/10);
+// }
+
+// int main(){
+//   int n = 38934525;
+
+//   printDigits(n);
+// }
+
+
+
+
+
+//       07 => check array is sorted or not
+bool isSorted(vector<int> arr,int idx){
+  int size = arr.size();
+  
+  if(idx>=size){
+    return true;
   }
-  else if(target>arr[mid]){
-    return binarySearch(arr,target,mid+1,end);
+
+  if(size==1){
+    return true;
   }
-  else{
-    return binarySearch(arr,target,start,mid-1);
+  if(arr[idx]>arr[idx+1]){
+    return false;
   }
+
+  bool ans = isSorted(arr,idx+1);
+  return ans;
 }
 
 int main(){
-  vector<int> arr={10,20,30,40,50,60,70,80,90};
-  int target = 60;
-  int start = 0;
-  int end = arr.size()-1;
+  vector<int> arr = {10};
+  int idx = 0;
 
-  int ans = binarySearch(arr,target,start,end);
-  cout << ans << endl;
+  bool finalAns = isSorted(arr,idx);
+
+  if(finalAns==1){
+    cout << "Array is sorted" << endl;
+  }else{
+    cout << "Array is not sorted" << endl;
+  }
 }

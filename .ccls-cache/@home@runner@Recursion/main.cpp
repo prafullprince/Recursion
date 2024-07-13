@@ -306,18 +306,19 @@ using namespace std;
 
 //     Q12 => count dearrangement
 
-int deArrangement(int n){
-  if(n==1){
-    return 0;
-  }
-  if(n==2){
-    return 1;
-  }
-  return (n-1)*(deArrangement(n-2)+ deArrangement(n-1));
-}
+// int deArrangement(int n){
+//   if(n==1){
+//     return 0;
+//   }
+//   if(n==2){
+//     return 1;
+//   }
+//   return (n-1)*(deArrangement(n-2)+ deArrangement(n-1));
+// }
 
-int main(){
-  int n = 4;
+// int main(){
+//   int n = 4;
 
-  cout<< "no of deaarangement possible is: " <<deArrangement(n);
-}
+//   cout<< "no of deaarangement possible is: " <<deArrangement(n);
+// }
+

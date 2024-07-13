@@ -270,33 +270,54 @@ using namespace std;
 //   }
 // }
 
-int coinChange(int coins[], int amount) {
-  if (amount == 0) {
+// int coinChange(int coins[], int amount) {
+//   if (amount == 0) {
+//     return 0;
+//   }
+//   int mini = INT_MAX;
+
+//   for (int i = 0; i < 3; i++) {
+//     int coin = coins[i];
+//     if (coin <= amount) {
+//       int recAns = coinChange(coins, amount - coin);
+//       if (recAns != INT_MAX) {
+//         int coinUsed = 1 + recAns;
+//         mini = min(coinUsed, mini);
+//       }
+//     }
+//   }
+//   return mini;
+// }
+
+// int main() {
+//   int coins[] = {2, 4, 1};
+//   int amount = 11;
+
+//   int finalAns = coinChange(coins, amount);
+//   if (finalAns == INT_MAX) {
+//     cout << "not possible ways" << endl;
+//   } else {
+//     cout << finalAns << endl;
+//   }
+// }
+
+
+
+
+//     Q12 => count dearrangement
+
+int deArrangement(int n){
+  if(n==1){
     return 0;
   }
-  int mini = INT_MAX;
-
-  for (int i = 0; i < 3; i++) {
-    int coin = coins[i];
-    if (coin <= amount) {
-      int recAns = coinChange(coins, amount - coin);
-      if (recAns != INT_MAX) {
-        int coinUsed = 1 + recAns;
-        mini = min(coinUsed, mini);
-      }
-    }
+  if(n==2){
+    return 1;
   }
-  return mini;
+  return (n-1)*(deArrangement(n-2)+ deArrangement(n-1));
 }
 
-int main() {
-  int coins[] = {2, 4, 1};
-  int amount = 11;
+int main(){
+  int n = 4;
 
-  int finalAns = coinChange(coins, amount);
-  if (finalAns == INT_MAX) {
-    cout << "not possible ways" << endl;
-  } else {
-    cout << finalAns << endl;
-  }
+  cout<< "no of deaarangement possible is: " <<deArrangement(n);
 }

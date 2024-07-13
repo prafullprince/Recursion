@@ -285,6 +285,9 @@ using namespace std;
 //         mini = min(coinUsed, mini);
 //       }
 //     }
+//     // else{
+//     //   mini = INT_MAX;
+//     // }
 //   }
 //   return mini;
 // }
@@ -322,3 +325,36 @@ using namespace std;
 //   cout<< "no of deaarangement possible is: " <<deArrangement(n);
 // }
 
+
+
+
+//         Q13 => Buy And Sell Stocks
+
+void maxmProfit(int prices[],int day,int idx,int &minPrice,int &maxProfit){
+  if(idx >= day){
+    return;
+  }
+  
+
+  // 1 case
+  if(prices[idx] < minPrice){
+    minPrice = prices[idx];
+  }
+  int todayProfit = prices[idx]-minPrice;
+  if(todayProfit>maxProfit){
+    maxProfit = todayProfit;
+  }
+  maxmProfit(prices,day,idx+1,minPrice,maxProfit);
+
+}
+
+
+int main(){
+  int prices[] = {7,1,5,3,6,4};
+  int day = 6;
+  int minPrice = INT_MAX;
+  int maxProfit = INT_MIN;
+  
+  maxmProfit(prices,day,0,minPrice,maxProfit);
+  cout<<maxProfit<<endl;
+}

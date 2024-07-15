@@ -458,22 +458,67 @@ using namespace std;
 
 //     Q 16 => reverse an string re
 
-class Solution {
-public:
+// class Solution {
+// public:
 
-    void solve(vector<char>& s,int start,int end){
-        if(start>end){
-            return;
-        }
+//     void solve(vector<char>& s,int start,int end){
+//         if(start>end){
+//             return;
+//         }
 
-        swap(s[start],s[end]);
-        solve(s,start+1,end-1);
+//         swap(s[start],s[end]);
+//         solve(s,start+1,end-1);
+//     }
+
+//     void reverseString(vector<char>& s) {
+//         int start = 0;
+//         int end = s.size()-1;
+
+//         solve(s,start,end);
+//     }
+// };
+
+
+
+
+
+//       Q17 => merge two sorted arrays
+void mergeSorted(vector<int> arr, vector<int> brr, vector<int> &ans){
+  int arrSize = arr.size();
+  int brrSize = brr.size();
+  int i=0;
+  int j=0;
+
+  while(i<arrSize && j<brrSize){
+    if(arr[i]<brr[j]){
+      ans.push_back(arr[i]);
+      i++;
     }
-
-    void reverseString(vector<char>& s) {
-        int start = 0;
-        int end = s.size()-1;
-
-        solve(s,start,end);
+    else{
+      ans.push_back(brr[j]);
+      j++;
     }
-};
+  }
+  // when arr remains
+  while(i<arrSize){
+    ans.push_back(arr[i]);
+    i++;
+  }
+  // when brr remains
+  while(j<brrSize){
+    ans.push_back(brr[j]);
+    j++;
+  }
+}
+
+int main(){
+  vector<int> arr = {20,40,60,80,100};
+  vector<int> brr = {10,30,50,70};
+  vector<int> ans;
+
+  mergeSorted(arr,brr,ans);
+
+  for(int num:ans){
+    cout<<num<<" ";
+  }
+}

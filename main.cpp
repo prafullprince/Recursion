@@ -380,28 +380,74 @@ using namespace std;
 
 //         Q13 => Buy And Sell Stocks
 
-void maxmProfit(int prices[],int day,int idx,int &minPrice,int &maxProfit){
-  if(idx >= day){
-    return;
-  }
-  // 1 case
-  if(prices[idx] < minPrice){
-    minPrice = prices[idx];
-  }
-  int todayProfit = prices[idx]-minPrice;
-  if(todayProfit>maxProfit){
-    maxProfit = todayProfit;
-  }
-  maxmProfit(prices,day,idx+1,minPrice,maxProfit);
-}
+// void maxmProfit(int prices[],int day,int idx,int &minPrice,int &maxProfit){
+//   if(idx >= day){
+//     return;
+//   }
+//   // 1 case
+//   if(prices[idx] < minPrice){
+//     minPrice = prices[idx];
+//   }
+//   int todayProfit = prices[idx]-minPrice;
+//   if(todayProfit>maxProfit){
+//     maxProfit = todayProfit;
+//   }
+//   maxmProfit(prices,day,idx+1,minPrice,maxProfit);
+// }
 
 
-int main(){
-  int prices[] = {7,1,5,3,6,4};
-  int day = 6;
-  int minPrice = INT_MAX;
-  int maxProfit = INT_MIN;
+// int main(){
+//   int prices[] = {7,1,5,3,6,4};
+//   int day = 6;
+//   int minPrice = INT_MAX;
+//   int maxProfit = INT_MIN;
   
-  maxmProfit(prices,day,0,minPrice,maxProfit);
-  cout<<maxProfit<<endl;
-}
+//   maxmProfit(prices,day,0,minPrice,maxProfit);
+//   cout<<maxProfit<<endl;
+// }
+
+
+
+
+
+//         Q14 => Wild Card Matching
+
+
+class Solution {
+public:
+
+    bool isMatchHelper(string &s,int si,string &p,int pi){
+
+        if(si==s.size() && pi==p.size()){
+            return true;
+        }
+        if(si==s.size() && pi<p.size()){
+            while(pi<p.size()){
+                if(p[pi]!='*'){
+                    return false;
+                }
+                pi++;
+            }
+            return true;
+        }
+
+        if(s[si]==p[pi] || p[pi]=='?'){
+            return isMatchHelper(s,si+1,p,pi+1);
+        }
+
+        if(p[pi]=='*'){
+            bool caseA = isMatchHelper(s,si,p,pi+1);
+            bool caseB = isMatchHelper(s,si+1,p,pi);
+
+            return caseA || caseB;
+        }
+        return false;
+    }
+
+    bool isMatch(string s, string p) {
+        int si = 0;
+        int pi = 0;
+
+        return isMatchHelper(s,si,p,pi);
+    }
+};

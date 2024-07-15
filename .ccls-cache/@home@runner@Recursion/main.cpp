@@ -5,7 +5,12 @@ using namespace std;
 
 //           <     ,
 
+
+
+
+
 //                 Q1 => Print Array
+
 // void printArray(int arr[],int size,int idx){
 //   if(idx>=size){
 //     return;
@@ -21,7 +26,13 @@ using namespace std;
 //   printArray(arr,size,idx);
 // }
 
+
+
+
+
+
 //             Q2 => linearSearch
+
 // void linearSearch(int arr[],int size,int idx,int target){
 //   if(idx>=size){
 //     cout<<"target is not found";
@@ -43,7 +54,12 @@ using namespace std;
 //   linearSearch(arr,size,idx,target);
 // }
 
-//                    Q3 => maximum num in an array
+
+
+
+
+
+//              Q3 => maximum num in an array
 
 // int maximumNum(int arr[],int size,int idx,int &maxNum){
 //   if(idx>=size){
@@ -66,7 +82,11 @@ using namespace std;
 //   cout << ans << endl;
 // }
 
-//                 Q4 =>  store in vector which is even num
+
+
+
+
+//          Q4 =>  store in vector which is even num
 
 // void printArray(int arr[],int size,int idx, vector<int> &ans){
 //   if(idx>=size){
@@ -91,7 +111,12 @@ using namespace std;
 //   }
 // }
 
+
+
+
+
 //       Q5 => binary search by recursion
+
 // int binarySearch(vector<int> arr,int target,int start,int end){
 //   if(start>end){
 //     return -1 ;
@@ -119,6 +144,11 @@ using namespace std;
 //   cout << ans << endl;
 // }
 
+
+
+
+
+
 //    Q6 => digit from digits
 
 // void printDigits(int n){
@@ -135,6 +165,11 @@ using namespace std;
 
 //   printDigits(n);
 // }
+
+
+
+
+
 
 //       07 => check array is sorted or not
 
@@ -169,6 +204,10 @@ using namespace std;
 //   }
 // }
 
+
+
+
+
 //       08 => print all subsequences
 
 // void printSubsequences(string str, string output,int idx){
@@ -192,6 +231,10 @@ using namespace std;
 
 //   printSubsequences(str,output,idx);
 // }
+
+
+
+
 
 //             09 => house robbery
 
@@ -218,6 +261,10 @@ using namespace std;
 //   cout << finalAns << endl;
 // }
 
+
+
+
+
 //         Q11 => coins change. 1) no. of ways
 
 // int coinChange(int coin,int amount){
@@ -237,6 +284,12 @@ using namespace std;
 
 //   cout << finalAns << endl;
 // }
+
+
+
+
+
+
 
 //         Q11 => coins change. 2) minimum no. of coins
 
@@ -260,9 +313,7 @@ using namespace std;
 //   int coins[] = {1,2,5,10};
 //   int amount = 11;
 //   int idx = 0;
-
 //   int finalAns = coinChangeMinCoins(coins, amount, idx);
-
 //   if(finalAns==INT_MAX){
 //     cout << "Not possible" << endl;
 //   }else{
@@ -275,7 +326,6 @@ using namespace std;
 //     return 0;
 //   }
 //   int mini = INT_MAX;
-
 //   for (int i = 0; i < 3; i++) {
 //     int coin = coins[i];
 //     if (coin <= amount) {
@@ -330,31 +380,74 @@ using namespace std;
 
 //         Q13 => Buy And Sell Stocks
 
-void maxmProfit(int prices[],int day,int idx,int &minPrice,int &maxProfit){
-  if(idx >= day){
-    return;
-  }
+// void maxmProfit(int prices[],int day,int idx,int &minPrice,int &maxProfit){
+//   if(idx >= day){
+//     return;
+//   }
+//   // 1 case
+//   if(prices[idx] < minPrice){
+//     minPrice = prices[idx];
+//   }
+//   int todayProfit = prices[idx]-minPrice;
+//   if(todayProfit>maxProfit){
+//     maxProfit = todayProfit;
+//   }
+//   maxmProfit(prices,day,idx+1,minPrice,maxProfit);
+// }
+
+
+// int main(){
+//   int prices[] = {7,1,5,3,6,4};
+//   int day = 6;
+//   int minPrice = INT_MAX;
+//   int maxProfit = INT_MIN;
   
-
-  // 1 case
-  if(prices[idx] < minPrice){
-    minPrice = prices[idx];
-  }
-  int todayProfit = prices[idx]-minPrice;
-  if(todayProfit>maxProfit){
-    maxProfit = todayProfit;
-  }
-  maxmProfit(prices,day,idx+1,minPrice,maxProfit);
-
-}
+//   maxmProfit(prices,day,0,minPrice,maxProfit);
+//   cout<<maxProfit<<endl;
+// }
 
 
-int main(){
-  int prices[] = {7,1,5,3,6,4};
-  int day = 6;
-  int minPrice = INT_MAX;
-  int maxProfit = INT_MIN;
-  
-  maxmProfit(prices,day,0,minPrice,maxProfit);
-  cout<<maxProfit<<endl;
-}
+
+
+
+//         Q14 => Wild Card Matching
+
+
+class Solution {
+public:
+
+    bool isMatchHelper(string &s,int si,string &p,int pi){
+
+        if(si==s.size() && pi==p.size()){
+            return true;
+        }
+        if(si==s.size() && pi<p.size()){
+            while(pi<p.size()){
+                if(p[pi]!='*'){
+                    return false;
+                }
+                pi++;
+            }
+            return true;
+        }
+
+        if(s[si]==p[pi] || p[pi]=='?'){
+            return isMatchHelper(s,si+1,p,pi+1);
+        }
+
+        if(p[pi]=='*'){
+            bool caseA = isMatchHelper(s,si,p,pi+1);
+            bool caseB = isMatchHelper(s,si+1,p,pi);
+
+            return caseA || caseB;
+        }
+        return false;
+    }
+
+    bool isMatch(string s, string p) {
+        int si = 0;
+        int pi = 0;
+
+        return isMatchHelper(s,si,p,pi);
+    }
+};

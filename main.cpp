@@ -412,42 +412,68 @@ using namespace std;
 
 //         Q14 => Wild Card Matching
 
+// class Solution {
+// public:
+
+//     bool isMatchHelper(string &s,int si,string &p,int pi){
+
+//         if(si==s.size() && pi==p.size()){
+//             return true;
+//         }
+//         if(si==s.size() && pi<p.size()){
+//             while(pi<p.size()){
+//                 if(p[pi]!='*'){
+//                     return false;
+//                 }
+//                 pi++;
+//             }
+//             return true;
+//         }
+
+//         if(s[si]==p[pi] || p[pi]=='?'){
+//             return isMatchHelper(s,si+1,p,pi+1);
+//         }
+
+//         if(p[pi]=='*'){
+//             bool caseA = isMatchHelper(s,si,p,pi+1);
+//             bool caseB = isMatchHelper(s,si+1,p,pi);
+
+//             return caseA || caseB;
+//         }
+//         return false;
+//     }
+
+//     bool isMatch(string s, string p) {
+//         int si = 0;
+//         int pi = 0;
+
+//         return isMatchHelper(s,si,p,pi);
+//     }
+// };
+
+
+
+
+
+
+//     Q 16 => reverse an string re
 
 class Solution {
 public:
 
-    bool isMatchHelper(string &s,int si,string &p,int pi){
-
-        if(si==s.size() && pi==p.size()){
-            return true;
-        }
-        if(si==s.size() && pi<p.size()){
-            while(pi<p.size()){
-                if(p[pi]!='*'){
-                    return false;
-                }
-                pi++;
-            }
-            return true;
+    void solve(vector<char>& s,int start,int end){
+        if(start>end){
+            return;
         }
 
-        if(s[si]==p[pi] || p[pi]=='?'){
-            return isMatchHelper(s,si+1,p,pi+1);
-        }
-
-        if(p[pi]=='*'){
-            bool caseA = isMatchHelper(s,si,p,pi+1);
-            bool caseB = isMatchHelper(s,si+1,p,pi);
-
-            return caseA || caseB;
-        }
-        return false;
+        swap(s[start],s[end]);
+        solve(s,start+1,end-1);
     }
 
-    bool isMatch(string s, string p) {
-        int si = 0;
-        int pi = 0;
+    void reverseString(vector<char>& s) {
+        int start = 0;
+        int end = s.size()-1;
 
-        return isMatchHelper(s,si,p,pi);
+        solve(s,start,end);
     }
 };

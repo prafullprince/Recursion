@@ -483,42 +483,121 @@ using namespace std;
 
 
 //       Q17 => merge two sorted arrays
-void mergeSorted(vector<int> arr, vector<int> brr, vector<int> &ans){
-  int arrSize = arr.size();
-  int brrSize = brr.size();
+
+// void mergeSorted(vector<int> arr, vector<int> brr, vector<int> &ans){
+//   int arrSize = arr.size();
+//   int brrSize = brr.size();
+//   int i=0;
+//   int j=0;
+
+//   while(i<arrSize && j<brrSize){
+//     if(arr[i]<brr[j]){
+//       ans.push_back(arr[i]);
+//       i++;
+//     }
+//     else{
+//       ans.push_back(brr[j]);
+//       j++;
+//     }
+//   }
+//   // when arr remains
+//   while(i<arrSize){
+//     ans.push_back(arr[i]);
+//     i++;
+//   }
+//   // when brr remains
+//   while(j<brrSize){
+//     ans.push_back(brr[j]);
+//     j++;
+//   }
+// }
+
+// int main(){
+//   vector<int> arr = {20,40,60,80,100};
+//   vector<int> brr = {10,30,50,70};
+//   vector<int> ans;
+
+//   mergeSorted(arr,brr,ans);
+
+//   for(int num:ans){
+//     cout<<num<<" ";
+//   }
+// }
+
+
+
+
+
+//                 Q18 => Merge Sort
+void merge(int arr[],int size,int start,int end,int mid){
+  int lArrayLen = mid-start+1;
+  int rArrayLen = end-mid;
+
+  // create l & rArray
+  int *lArray = new int[lArrayLen];
+  int *rArray = new int[rArrayLen];
+
+  // copy arr into l & rArray
+  int index = start;
+  for(int i=0;i<lArrayLen;i++){
+    lArray[i] = arr[index];
+    index++;
+  }
+  for(int i=0;i<rArrayLen;i++){
+    rArray[i] = arr[index];
+    index++;
+  }
+  // now merge lArray and rArray in main arr
   int i=0;
   int j=0;
-
-  while(i<arrSize && j<brrSize){
-    if(arr[i]<brr[j]){
-      ans.push_back(arr[i]);
+  int mainIndex=start;
+  while(i<lArrayLen && j<rArrayLen){
+    if(lArray[i]<rArray[j]){
+      arr[mainIndex] = lArray[i];
+      mainIndex++;
       i++;
     }
     else{
-      ans.push_back(brr[j]);
+      arr[mainIndex] = rArray[j];
+      mainIndex++;
       j++;
     }
   }
-  // when arr remains
-  while(i<arrSize){
-    ans.push_back(arr[i]);
+  // 2 remaining cases
+  while(i<lArrayLen){
+    arr[mainIndex] = lArray[i];
+    mainIndex++;
     i++;
   }
-  // when brr remains
-  while(j<brrSize){
-    ans.push_back(brr[j]);
+  while(j<rArrayLen){
+    arr[mainIndex] = rArray[j];
+    mainIndex++;
     j++;
   }
+
+  // delete heap memory
+  delete[] lArray;
+  delete[] rArray;
+}
+
+void mergeSort(int arr[],int size,int start,int end){
+  int mid = start + (end-start)/2;
+ if(start>=end){
+   return;
+ }
+  mergeSort(arr,size,start,mid);
+  mergeSort(arr,size,mid+1,end);
+  merge(arr,size,start,end,mid);
 }
 
 int main(){
-  vector<int> arr = {20,40,60,80,100};
-  vector<int> brr = {10,30,50,70};
-  vector<int> ans;
+  int arr[] = {20,30,50,70,90,80,60,40};
+  int size = 8;
+  int start = 0;
+  int end = 7;
+  mergeSort(arr,size,start,end);
 
-  mergeSorted(arr,brr,ans);
-
-  for(int num:ans){
-    cout<<num<<" ";
+  for(int i=0;i<size;i++){
+    cout<<arr[i]<<" ";
   }
 }

@@ -529,75 +529,102 @@ using namespace std;
 
 
 //                 Q18 => Merge Sort
-void merge(int arr[],int size,int start,int end,int mid){
-  int lArrayLen = mid-start+1;
-  int rArrayLen = end-mid;
 
-  // create l & rArray
-  int *lArray = new int[lArrayLen];
-  int *rArray = new int[rArrayLen];
+// void merge(int arr[],int size,int start,int end,int mid){
+//   int lArrayLen = mid-start+1;
+//   int rArrayLen = end-mid;
 
-  // copy arr into l & rArray
-  int index = start;
-  for(int i=0;i<lArrayLen;i++){
-    lArray[i] = arr[index];
-    index++;
-  }
-  for(int i=0;i<rArrayLen;i++){
-    rArray[i] = arr[index];
-    index++;
-  }
-  // now merge lArray and rArray in main arr
-  int i=0;
-  int j=0;
-  int mainIndex=start;
-  while(i<lArrayLen && j<rArrayLen){
-    if(lArray[i]<rArray[j]){
-      arr[mainIndex] = lArray[i];
-      mainIndex++;
-      i++;
-    }
-    else{
-      arr[mainIndex] = rArray[j];
-      mainIndex++;
-      j++;
-    }
-  }
-  // 2 remaining cases
-  while(i<lArrayLen){
-    arr[mainIndex] = lArray[i];
-    mainIndex++;
-    i++;
-  }
-  while(j<rArrayLen){
-    arr[mainIndex] = rArray[j];
-    mainIndex++;
-    j++;
+//   // create l & rArray
+//   int *lArray = new int[lArrayLen];
+//   int *rArray = new int[rArrayLen];
+
+//   // copy arr into l & rArray
+//   int index = start;
+//   for(int i=0;i<lArrayLen;i++){
+//     lArray[i] = arr[index];
+//     index++;
+//   }
+//   for(int i=0;i<rArrayLen;i++){
+//     rArray[i] = arr[index];
+//     index++;
+//   }
+//   // now merge lArray and rArray in main arr
+//   int i=0;
+//   int j=0;
+//   int mainIndex=start;
+//   while(i<lArrayLen && j<rArrayLen){
+//     if(lArray[i]<rArray[j]){
+//       arr[mainIndex] = lArray[i];
+//       mainIndex++;
+//       i++;
+//     }
+//     else{
+//       arr[mainIndex] = rArray[j];
+//       mainIndex++;
+//       j++;
+//     }
+//   }
+//   // 2 remaining cases
+//   while(i<lArrayLen){
+//     arr[mainIndex] = lArray[i];
+//     mainIndex++;
+//     i++;
+//   }
+//   while(j<rArrayLen){
+//     arr[mainIndex] = rArray[j];
+//     mainIndex++;
+//     j++;
+//   }
+
+//   // delete heap memory
+//   delete[] lArray;
+//   delete[] rArray;
+// }
+
+// void mergeSort(int arr[],int size,int start,int end){
+//   int mid = start + (end-start)/2;
+//  if(start>=end){
+//    return;
+//  }
+//   mergeSort(arr,size,start,mid);
+//   mergeSort(arr,size,mid+1,end);
+//   merge(arr,size,start,end,mid);
+// }
+
+// int main(){
+//   int arr[] = {20,30,50,70,90,80,60,40};
+//   int size = 8;
+//   int start = 0;
+//   int end = 7;
+//   mergeSort(arr,size,start,end);
+
+//   for(int i=0;i<size;i++){
+//     cout<<arr[i]<<" ";
+//   }
+// }
+
+
+
+
+
+//       Q19 => Permutation of string
+
+void solve(string &str,int i,int n){
+  if(i>=n){
+    cout<<str<<endl;
   }
 
-  // delete heap memory
-  delete[] lArray;
-  delete[] rArray;
-}
-
-void mergeSort(int arr[],int size,int start,int end){
-  int mid = start + (end-start)/2;
- if(start>=end){
-   return;
- }
-  mergeSort(arr,size,start,mid);
-  mergeSort(arr,size,mid+1,end);
-  merge(arr,size,start,end,mid);
+  for(int j=i;j<n;j++){
+    swap(str[i], str[j]);
+    solve(str, i+1, n);
+    // backtracking
+    swap(str[i], str[j]);
+  }
 }
 
 int main(){
-  int arr[] = {20,30,50,70,90,80,60,40};
-  int size = 8;
-  int start = 0;
-  int end = 7;
-  mergeSort(arr,size,start,end);
-
-  for(int i=0;i<size;i++){
-    cout<<arr[i]<<" ";
-  }
+  string str = "abc";
+  int i=0;
+  int n=3;
+  solve(str,i,n);
 }

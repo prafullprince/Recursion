@@ -609,22 +609,55 @@ using namespace std;
 
 //       Q19 => Permutation of string
 
-void solve(string &str,int i,int n){
-  if(i>=n){
-    cout<<str<<endl;
-  }
+// void solve(string &str,int i,int n){
+//   if(i>=n){
+//     cout<<str<<endl;
+//   }
 
-  for(int j=i;j<n;j++){
-    swap(str[i], str[j]);
-    solve(str, i+1, n);
-    // backtracking
-    swap(str[i], str[j]);
-  }
-}
+//   for(int j=i;j<n;j++){
+//     swap(str[i], str[j]);
+//     solve(str, i+1, n);
+//     // backtracking
+//     swap(str[i], str[j]);
+//   }
+// }
 
-int main(){
-  string str = "abc";
-  int i=0;
-  int n=3;
-  solve(str,i,n);
-}
+// int main(){
+//   string str = "abc";
+//   int i=0;
+//   int n=3;
+//   solve(str,i,n);
+// }
+
+
+
+
+//         Q20 => Palindrome using re
+
+// bool isPalindrome(string &str,int i,int j){
+//   if(i>j){
+//     return true;
+//   }
+//   if(str[i]!=str[j]){
+//     return false;
+//   }
+//   return isPalindrome(str,i+1,j-1);
+// }
+
+// int main(){
+//   string str = "121";
+//   int len = str.size();
+//   int i=0;
+//   int j=len-1;
+//   // if(len < 0){
+//   //   return 0;
+//   // }
+
+//   bool ans = isPalindrome(str,i,j);
+//   cout<<ans<<endl;
+// }
+
+
+
+
+//     Q21 => Print all subarrays

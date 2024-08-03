@@ -661,3 +661,47 @@ using namespace std;
 
 
 //     Q21 => Print all subarrays
+
+
+
+
+
+
+
+//     Q22 => buy and sell stocks - 2
+
+// int solve(vector<int> arr){
+  
+// }
+
+// int main(){
+//   vector<int> arr = {7,1,5,3,6,4};
+//   // int ans = solve(arr);
+  
+// }
+
+
+void solve(string str,int idx,string output){
+  // base case
+  if(idx>=str.length()){
+    cout<<output<<endl;
+    return;
+  }
+
+  // 1 case
+  char ch = str[idx];
+  // include
+  solve(str,idx+1,output+ch);
+  // exclude
+  solve(str, idx+1, output);
+  
+  
+}
+
+
+int main(){
+  string str = "abc";
+  int idx = 0;
+  string output = "" ;
+  solve(str,idx,output);
+}

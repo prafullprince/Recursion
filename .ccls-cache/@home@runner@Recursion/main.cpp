@@ -3,7 +3,7 @@
 using namespace std;
 #include <limits.h>
 
-// Q1 => Print Array
+// Q1 => My intuation to solve Print Array
 /*
 void printArray(int arr[],int size,int idx){
   if(idx>=size){
@@ -21,7 +21,7 @@ int main() {
 }
 */
 
-// Q2 => linearSearch
+// Q2 => My intuation to solve linearSearch
 /*void linearSearch(int arr[],int size,int idx,int target){
 //   if(idx>=size){
 //     cout<<"target is not found";
@@ -44,7 +44,7 @@ int main() {
 // }
 */
 
-// Q3 => maximum num in an array
+// Q3 => My intuation to solve maximum num in an array
 /* int maximumNum(int arr[],int size,int idx,int &maxNum){
 //   if(idx>=size){
 //     return 0;
@@ -67,7 +67,7 @@ int main() {
 // }
 */
 
-// Q4 =>  store in vector which is even num
+// Q4 =>  My intuation to solve store in vector which is even num
 /* void printArray(int arr[],int size,int idx, vector<int> &ans){
 //   if(idx>=size){
 //     return;
@@ -92,7 +92,7 @@ int main() {
 // }
 */
 
-// Q5 => binary search by recursion
+// Q5 => My intuation to solve binary search by recursion
 /* int binarySearch(vector<int> arr,int target,int start,int end){
 //   if(start>end){
 //     return -1 ;
@@ -121,7 +121,7 @@ int main() {
 // }
 */
 
-// Q6 => digit from digits
+// Q6 => My intuation to solve digit from digits
 /* void printDigits(int n){
 //   if(n==0){
 //     return;
@@ -138,7 +138,7 @@ int main() {
 // }
 */
 
-// Q7 => check array is sorted or not
+// Q7 => My intuation to solve check array is sorted or not
 /* bool isSorted(vector<int> arr,int idx){
 //   int size = arr.size();
 
@@ -171,7 +171,7 @@ int main() {
 // }
   */
 
-// Q8 => print all subsequences
+// Q8 => My intuation to solve print all subsequences
 /* void printSubsequences(string str, string output,int idx){
 //   if(idx>=str.length()){
 //     cout<<"subseqences of string are: "<< output << endl;
@@ -195,7 +195,7 @@ int main() {
 // }
 */
 
-// Q9 => house robbery
+// Q9 => My intuation to solve house robbery
 /* int rob(vector<int> arr,int size,int idx){
 //   if(idx>=size){
 //     return 0;
@@ -238,7 +238,7 @@ int main() {
 // }
 */
 
-// Q11 => Buy And Sell Stocks
+// Q11 => My intuation to solve Buy And Sell Stocks
 /*
 void maxmProfit(int prices[],int day,int idx,int &minPrice,int &maxProfit){
   if(idx >= day){
@@ -303,7 +303,7 @@ bool isMatch(string s, string p) {
 }
 */
 
-// Q16 => reverse an string re
+// Q16 => My intuation to solve reverse an string
 /*
 void solve(vector<char> &s, int start, int end) {
   if (start > end) {
@@ -463,7 +463,7 @@ int main(){
 }
 */
 
-// Q20 => Palindrome using re
+// Q20 => My intuation to solve Palindrome
 /*
 bool isPalindrome(string &str,int i,int j){
   if(i>j){
@@ -489,32 +489,7 @@ int main(){
 }
 */
 
-// Q21 => Subsequences of string
-/*void solve(string str,int idx,string output){
-  // base case
-  if(idx>=str.length()){
-    cout<<output<<endl;
-    return;
-  }
-
-  // 1 case
-  char ch = str[idx];
-  // include
-  solve(str,idx+1,output+ch);
-  // exclude
-  solve(str, idx+1, output);
-
-}
-
-int main(){
-  string str = "abc";
-  int idx = 0;
-  string output = "" ;
-  solve(str,idx,output);
-}
-*/
-
-// Q22 => My intuation to solve coin change problem
+// Q21 => My intuation to solve coin change problem
 /*    int solve(vector<int>& coins, int amount,int idx) {
         // base case
         if (amount == 0) {
@@ -550,7 +525,7 @@ int main(){
 };
 */
 
-// Q23 => My intuition -> no. of ways coin change
+// Q22 => My intuition -> no. of ways coin change
 /*    int solve(int amount,vector<int>& coins,int idx) {
         // base case
         if (amount == 0) {

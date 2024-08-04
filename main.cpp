@@ -681,27 +681,69 @@ using namespace std;
 // }
 
 
-void solve(string str,int idx,string output){
-  // base case
-  if(idx>=str.length()){
-    cout<<output<<endl;
-    return;
-  }
+// void solve(string str,int idx,string output){
+//   // base case
+//   if(idx>=str.length()){
+//     cout<<output<<endl;
+//     return;
+//   }
 
-  // 1 case
-  char ch = str[idx];
-  // include
-  solve(str,idx+1,output+ch);
-  // exclude
-  solve(str, idx+1, output);
+//   // 1 case
+//   char ch = str[idx];
+//   // include
+//   solve(str,idx+1,output+ch);
+//   // exclude
+//   solve(str, idx+1, output);
   
   
-}
+// }
 
 
-int main(){
-  string str = "abc";
-  int idx = 0;
-  string output = "" ;
-  solve(str,idx,output);
-}
+// int main(){
+//   string str = "abc";
+//   int idx = 0;
+//   string output = "" ;
+//   solve(str,idx,output);
+// }
+
+
+
+
+
+
+//       my intuation to solve coin change problem 
+
+
+    int solve(vector<int>& coins, int amount,int idx) {
+        // base case
+        if (amount == 0) {
+            return 0;
+        }
+        if(idx>=coins.size() || amount < 0){
+            return INT_MAX;
+        }
+        int mini = INT_MAX;
+
+        // 1 case
+        // take coin 
+        int coin = coins[idx];
+        // int takeCoin = INT_MAX;
+        int takeCoin = solve(coins,amount-coin,idx);
+        if(takeCoin != INT_MAX){
+            int coinUsed = 1 + takeCoin;
+            mini = min(mini,coinUsed);
+        }
+        int notTakeCoin = solve(coins,amount,idx+1);
+
+        return min(mini,notTakeCoin);
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        int idx = 0;
+        int ans = solve(coins, amount,idx);
+        if(ans == INT_MAX){
+            return -1;
+        }
+        return ans;
+    }
+};

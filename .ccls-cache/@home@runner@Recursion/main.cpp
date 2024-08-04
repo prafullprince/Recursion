@@ -711,39 +711,88 @@ using namespace std;
 
 
 
-//       my intuation to solve coin change problem 
+//         My intuation to solve coin change problem 
 
 
-    int solve(vector<int>& coins, int amount,int idx) {
-        // base case
-        if (amount == 0) {
-            return 0;
-        }
-        if(idx>=coins.size() || amount < 0){
-            return INT_MAX;
-        }
-        int mini = INT_MAX;
 
-        // 1 case
-        // take coin 
-        int coin = coins[idx];
-        // int takeCoin = INT_MAX;
-        int takeCoin = solve(coins,amount-coin,idx);
-        if(takeCoin != INT_MAX){
-            int coinUsed = 1 + takeCoin;
-            mini = min(mini,coinUsed);
-        }
-        int notTakeCoin = solve(coins,amount,idx+1);
 
-        return min(mini,notTakeCoin);
-    }
+//     int solve(vector<int>& coins, int amount,int idx) {
+//         // base case
+//         if (amount == 0) {
+//             return 0;
+//         }
+//         if(idx>=coins.size() || amount < 0){
+//             return INT_MAX;
+//         }
+//         int mini = INT_MAX;
 
-    int coinChange(vector<int>& coins, int amount) {
-        int idx = 0;
-        int ans = solve(coins, amount,idx);
-        if(ans == INT_MAX){
-            return -1;
-        }
-        return ans;
-    }
-};
+//         // 1 case
+//         // take coin 
+//         int coin = coins[idx];
+//         // int takeCoin = INT_MAX;
+//         int takeCoin = solve(coins,amount-coin,idx);
+//         if(takeCoin != INT_MAX){
+//             int coinUsed = 1 + takeCoin;
+//             mini = min(mini,coinUsed);
+//         }
+//         int notTakeCoin = solve(coins,amount,idx+1);
+
+//         return min(mini,notTakeCoin);
+//     }
+
+//     int coinChange(vector<int>& coins, int amount) {
+//         int idx = 0;
+//         int ans = solve(coins, amount,idx);
+//         if(ans == INT_MAX){
+//             return -1;
+//         }
+//         return ans;
+//     }
+// };
+
+
+
+
+
+
+//       My intuition -> no. of ways coin change
+
+
+// class Solution {
+// public:
+//     int solve(int amount,vector<int>& coins,int idx) {
+//         // base case
+//         if (amount == 0) {
+//             return 1;
+//         }
+//         if(idx>=coins.size() || amount < 0){
+//             return 0;
+//         }
+//         // int mini = INT_MAX;
+//         int ways = 0;
+//         // 1 case
+//         // take coin 
+//         int coin = coins[idx];
+//         // int takeCoin = INT_MAX;
+//         int takeCoin = solve(amount-coin,coins,idx);
+//         if(takeCoin != 0){
+//             ways = takeCoin;
+//             // mini = min(mini,coinUsed);
+//         }
+//         int notTakeCoin = solve(amount,coins,idx+1);
+
+//         return ways+notTakeCoin;
+//     }
+
+
+//     int change(int amount, vector<int>& coins) {
+//         int idx = 0;
+//         int ans = solve(amount, coins,idx);
+//         // if(ans == 0){
+//         //     return 0;
+//         // }
+//         return ans;
+//     }
+
+
+// };

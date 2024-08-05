@@ -220,25 +220,32 @@ int main() {
 // }
 */
 
-// Q10 => count dearrangement
-/* int deArrangement(int n){
-//   if(n==1){
-//     return 0;
-//   }
-//   if(n==2){
-//     return 1;
-//   }
-//   return (n-1)*(deArrangement(n-2)+ deArrangement(n-1));
-// }
+// Q10 => intuation come count dearrangement
+/* 
+int solve(int n){
+  // base case
+  if(n==1 || n==2){
+    return n-1;
+  }
 
-// int main(){
-//   int n = 4;
+  // 1case
+  // mere pass 2 possibilities hai 1> main 1 element ko dusre kisi element se swap krwa de to ismn do element jagah badal chuke hain ab n-2 element bhi swap krenge recursion ko use krke.Hum 1 element ko ek hi jagah pe swap kiye hn but wo element to present 1 position ke allawa kahin n-1 jagah pe swap kr skata hai so code is
+  int case1 = (n-1)*solve(n-2);
+  // mere pass 2 possibilities hai 2> main 1 element ko dusre kisi element ke jagah pe rakh denge aur dusra element kahin aur bhi reh skta hai to is case mn mere pass 1 element jagah badal liya hai and n-1 element ko recursion se badal denge.Aur ye jagah n-1 jagah pe ki ja skti hai so code is
+  int case2 = (n-1)*solve(n-1);
 
-//   cout<< "no of deaarangement possible is: " <<deArrangement(n);
-// }
+  // total possibilities is case1 + case2
+  return case1+case2;
+
+}
+int main(){
+  int n=2;
+  int ans = solve(n);
+  cout<<ans<<endl;
+}
 */
 
-// Q11 => My intuation to solve Buy And Sell Stocks
+// Q11 => My intuation to solve Buy And Sell Stocks 1
 /*
 void maxmProfit(int prices[],int day,int idx,int &minPrice,int &maxProfit){
   if(idx >= day){
@@ -525,7 +532,7 @@ int main(){
 };
 */
 
-// Q22 => My intuition -> no. of ways coin change
+// Q22 => My intuition to solve -> no. of ways coin change
 /*    int solve(int amount,vector<int>& coins,int idx) {
         // base case
         if (amount == 0) {
@@ -561,3 +568,113 @@ int main(){
 
 };
 */
+
+// Q23 => My intituation to solve -> Buy and sell stocks 2
+/*int maxmProfit(vector<int>& prices,int idx,int &maxProfit,int &buyPrice,int &sum){
+  if(idx >= prices.size()){
+      return sum;
+  }
+  if(buyPrice>prices[idx]){
+      buyPrice = prices[idx];
+  }
+  int profit = prices[idx] - buyPrice;
+  if(profit>maxProfit){
+      maxProfit = profit;
+      sum = sum + maxProfit;
+      if(profit>0){
+          buyPrice = prices[idx];
+          maxProfit = INT_MIN;
+      }
+  }
+  return maxmProfit(prices,idx+1,maxProfit,buyPrice,sum);
+}
+
+int maxProfit(vector<int>& prices) {
+  int maxProfit = INT_MIN;
+  int buyPrice = INT_MAX;
+  int idx =0;
+  int sum = 0;
+  int ans = maxmProfit(prices,idx,maxProfit,buyPrice,sum);
+  return ans;
+
+}
+*/
+
+// void solve(string &S,int i,int j){
+//   int size = S.length();
+//  // base case
+//  if(i==size-1 || j==size-1){
+//      // output.push_back(S);
+//    cout<<S<<endl;
+//    return;
+//  }
+//  // 1 case
+//  swap(S[i],S[j]);
+//  // include
+//  solve(S,i,i+1);
+//   swap(S[i],S[j]);
+//  //exclude
+//  solve(S,i+1,i+1);
+// }
+// int main()
+// {
+// // Code here there
+// string S = "abc";
+// int i = 0;
+// int j = 0;
+// // vector<string> output;
+// solve(S,i,j);
+//   // for(int k=0;k<S.length();k++){
+//   //   cout<<output[k]<<endl;
+//   // }
+// }
+
+
+// Q24 => My intuation to solve max sum of non-adjacent element
+/*int solve(vector<int> arr,int idx){
+  int size = arr.size();
+  // base case
+  if(idx>=size){
+    return 0;
+  }
+
+  // 1 case
+  // include
+  int includeAns = arr[idx] + solve(arr,idx+2);
+  // exclude
+  int excludeAns = solve(arr,idx+1);
+  // cout<<max(includeAns,excludeAns)<<endl;
+  return max(includeAns,excludeAns);
+}
+int main(){
+  vector<int> arr = {12,4,1,6,8,5,2};
+  int idx = 0;
+  int ans = solve(arr,idx);
+  cout<<"ans is: "<<ans<<endl;
+}
+*/
+
+// Q25 => My intuation to solve house robbery 2
+/*    int solve(vector<int>& nums,int idx){
+        // base case
+        if(idx>=nums.size()){
+            return 0;
+        }
+        // 1 case
+        // include
+        int includeAns = nums[idx] + solve(nums,idx+2);
+        // exclude
+        int excludeAns = solve(nums,idx+1);
+
+        return max(includeAns,excludeAns);
+    }
+
+    int rob(vector<int>& nums) {
+        // created a dp array
+        vector<int> dp(nums.size()+1,-1);
+        int idx = 0;
+        int ans = solve(nums,idx);
+        return ans;
+    }
+*/
+

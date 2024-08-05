@@ -678,3 +678,25 @@ int main(){
     }
 */
 
+// Q26 => painting fence algorithm
+
+
+int solve(int n){
+  int k=3;
+  if(n==1){
+    return k;
+  }
+  if(n==2){
+    return k*k;
+  }
+  // 1 case
+  int diff = solve(n-1)*(k-1);
+  int same = solve(n-2)*(k-1);
+  return same+diff;
+}
+
+int main(){
+  int n=6;
+  int ans = solve(n);
+  cout << ans << endl;
+}

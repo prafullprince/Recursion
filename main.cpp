@@ -679,8 +679,7 @@ int main(){
 */
 
 // Q26 => painting fence algorithm
-
-
+/*
 int solve(int n){
   int k=3;
   if(n==1){
@@ -700,3 +699,41 @@ int main(){
   int ans = solve(n);
   cout << ans << endl;
 }
+*/
+
+// Q27 => edit distance
+/*
+    int solve(string& w1,string& w2,int i,int j){
+        // base case
+        if(i>=w1.length()){
+            return w2.length()-j;
+        }
+        if(j>=w2.length()){
+            return w1.length()-i;
+        }
+        // 1 case
+        // if matched
+        int ans=0;
+        if(w1[i]==w2[j]){
+            ans = 0 + solve(w1,w2,i+1,j+1);
+        }
+        else{
+            // insert
+            int opt1 = 1 + solve(w1,w2,i,j+1);
+            // delete
+            int opt2 = 1 + solve(w1,w2,i+1,j);
+            // replace
+            int opt3 = 1 + solve(w1,w2,i+1,j+1);
+            ans = min(opt1,min(opt2,opt3));
+        }
+        return ans;
+    }
+
+    int minDistance(string word1, string word2) {
+        int i=0;
+        int j=0;
+        int ans = solve(word1,word2,i,j);
+        return ans;
+    }
+*/
+

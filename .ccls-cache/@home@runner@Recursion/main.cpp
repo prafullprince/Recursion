@@ -701,3 +701,143 @@ int main(){
 }
 */
 
+// Q27 => edit distance
+/*
+    int solve(string& w1,string& w2,int i,int j){
+        // base case
+        if(i>=w1.length()){
+            return w2.length()-j;
+        }
+        if(j>=w2.length()){
+            return w1.length()-i;
+        }
+        // 1 case
+        // if matched
+        int ans=0;
+        if(w1[i]==w2[j]){
+            ans = 0 + solve(w1,w2,i+1,j+1);
+        }
+        else{
+            // insert
+            int opt1 = 1 + solve(w1,w2,i,j+1);
+            // delete
+            int opt2 = 1 + solve(w1,w2,i+1,j);
+            // replace
+            int opt3 = 1 + solve(w1,w2,i+1,j+1);
+            ans = min(opt1,min(opt2,opt3));
+        }
+        return ans;
+    }
+
+    int minDistance(string word1, string word2) {
+        int i=0;
+        int j=0;
+        int ans = solve(word1,word2,i,j);
+        return ans;
+    }
+*/
+
+// Q28 => maximal sqaure
+/*
+    int solve(vector<vector<char>>& matrix,int i,int j,int row,int col,int &maxi){
+        // base case
+        if(i>=row || j>=col){
+            return 0;
+        }
+
+        // 1 case
+        // all possible direction
+        int right = solve(matrix,i,j+1,row,col,maxi);
+        int diagonal = solve(matrix,i+1,j+1,row,col,maxi);
+        int down = solve(matrix,i,j+1,row,col,maxi);
+
+        // 
+        if(matrix[i][j] == '1'){
+            int ans = 1 + min(right,min(diagonal,down));
+            maxi = max(maxi,ans);
+            return ans;
+        }
+        else{
+            // on 0 matrix
+            return 0;
+        }
+        // return maxi;
+    }
+
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int i=0;
+        int j=0;
+        int row = matrix.size();
+        int col = matrix[0].size();
+        int maxi = 0;
+        solve(matrix,i,j,row,col,maxi);
+        return maxi*maxi;
+    }
+
+*/
+
+// Q29 => Perfect Squares
+/*
+    int solve(int n){
+        // base case
+        if(n==0){
+            return 0;
+        }
+        int mini = INT_MAX;
+        int end = sqrt(n);
+        // 1 case
+        for(int i=1;i<=end;i++){
+            int ans = 1 + solve(n-(i*i));
+            mini = min(mini,ans);
+        }
+        return mini;
+    }
+
+    int numSquares(int n) {
+        int ans = solve(n);
+        return ans;
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// bool isPowerOfFour(int n) {
+//     if(n<=1){
+//        return true;
+//     }
+//     if(n%4!=0){
+//        return false;
+//     }
+
+//     return isPowerOfFour(n/4);
+// }
+
+// int main(){
+//   bool ans = isPowerOfFour(8);
+  
+//   cout << ans << endl;
+// }

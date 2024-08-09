@@ -776,3 +776,68 @@ int main(){
 
 */
 
+// Q29 => Perfect Squares
+/*
+    int solve(int n){
+        // base case
+        if(n==0){
+            return 0;
+        }
+        int mini = INT_MAX;
+        int end = sqrt(n);
+        // 1 case
+        for(int i=1;i<=end;i++){
+            int ans = 1 + solve(n-(i*i));
+            mini = min(mini,ans);
+        }
+        return mini;
+    }
+
+    int numSquares(int n) {
+        int ans = solve(n);
+        return ans;
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// bool isPowerOfFour(int n) {
+//     if(n<=1){
+//        return true;
+//     }
+//     if(n%4!=0){
+//        return false;
+//     }
+
+//     return isPowerOfFour(n/4);
+// }
+
+// int main(){
+//   bool ans = isPowerOfFour(8);
+  
+//   cout << ans << endl;
+// }
